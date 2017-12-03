@@ -1,10 +1,10 @@
 package uz.avaz.asus.saveit;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -19,12 +19,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addMarkets();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                addMarkets();
+            }
+        });
     }
 
     private void addMarkets() {
         int size;
-        LinearLayout container = (LinearLayout) findViewById(R.id.container);
+        LinearLayout container = findViewById(R.id.container);
         for (int i = 0; i < Tools.markets_array.size(); i++) {
             Market market = Tools.markets_array.get(i);
             size = getResources().getDimensionPixelSize(R.dimen.size_8dp);
@@ -38,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
             item.setOrientation(LinearLayout.HORIZONTAL);
             size = getResources().getDimensionPixelSize(R.dimen.size_16dp);
             item.setPadding(size, size, size, size);
-
-
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -54,73 +57,33 @@ public class MainActivity extends AppCompatActivity {
             image.setScaleType(ImageView.ScaleType.FIT_CENTER);
             image.setBackgroundResource(android.R.color.transparent);
 
+            size = getResources().getDimensionPixelSize(R.dimen.size_16dp);
+            LinearLayout layout = new LinearLayout(this);
+            layout.setOrientation(LinearLayout.VERTICAL);
+
+            TextView name = new TextView(this);
+            LinearLayout.LayoutParams name_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            name_lp.setMargins(size, 0, size, 0);
+            name.setLayoutParams(name_lp);
+            name.setText(market.name);
+            name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            name.setTextColor(Color.BLACK);
+            name.setTypeface(name.getTypeface(), Typeface.BOLD);
+
+            TextView address = new TextView(this);
+            LinearLayout.LayoutParams address_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            address_lp.setMargins(size, 0, size, 0);
+            address.setLayoutParams(address_lp);
+            address.setText(market.address);
+            address.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            address.setTextColor(Color.BLACK);
+
+            layout.addView(name);
+            layout.addView(address);
+
             item.addView(image);
+            item.addView(layout);
             container.addView(item);
         }
     }
-
-//    private void addItems() {
-//        LinearLayout container = (LinearLayout) findViewById(R.id.container);
-//        for (int i = 1; i <= 21; i++) {
-//            LinearLayout item = new LinearLayout(this);
-//            item.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-//            item.setTag(i);
-//            item.setBackgroundResource(R.drawable.item_click);
-//            item.setClickable(true);
-//            item.setOrientation(LinearLayout.HORIZONTAL);
-//
-//            item.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    openCalculator(v);
-//                }
-//            });
-//
-//            View view = new View(this);
-//            view.setLayoutParams(new ViewGroup.LayoutParams(Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics())), ViewGroup.LayoutParams.MATCH_PARENT));
-//            view.setBackgroundResource(R.color.mainColor);
-//
-//            TextView title = new TextView(this);
-//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
-//            params.weight = 1f;
-//            title.setGravity(Gravity.CENTER_VERTICAL);
-//            title.setMaxLines(2);
-//            title.setLayoutParams(params);
-//            title.setText(getResources().getIdentifier("calc_title_" + i, "string", getPackageName()));
-//            title.setTextColor(Color.BLACK);
-//            title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-//            int size = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
-//            title.setPadding(size, size, size, size);
-//
-//            ImageButton button = new ImageButton(this);
-//            button.setPadding(size, size, size, size);
-//            size = getResources().getDimensionPixelSize(R.dimen.size_64);
-//            button.setLayoutParams(new ViewGroup.LayoutParams(size, size));
-//            button.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    showFullTitle(v);
-//                }
-//            });
-//            button.setBackgroundResource(android.R.color.transparent);
-//            button.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//            button.setImageResource(R.drawable.show);
-//            button.setTag(i);
-//
-//            item.addView(view);
-//            item.addView(title);
-//            item.addView(button);
-//
-//            View line = new View(this);
-//            size = getResources().getDimensionPixelSize(R.dimen.activity_horizontal_margin);
-//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2);
-//            lp.setMargins(size, 0, size, 0);
-//            line.setBackgroundResource(android.R.color.darker_gray);
-//            line.setLayoutParams(lp);
-//
-//            container.addView(item);
-//            if (i < 21)
-//                container.addView(line);
-//        }
-//    }
 }
