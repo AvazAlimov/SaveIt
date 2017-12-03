@@ -31,11 +31,10 @@ public class StartActivity extends AppCompatActivity {
 
         if (isConnected()) {
             Log.e("NETWORK:", "You are connected");
+            new HttpAsyncTask().execute("https://unews-hub.000webhostapp.com/api/markets");
         } else {
             Log.e("NETWORK:", "You are NOT connected");
         }
-
-        new HttpAsyncTask().execute("https://unews-hub.000webhostapp.com/api/markets");
     }
 
 

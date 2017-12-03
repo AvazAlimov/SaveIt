@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     android:background="@android:color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,10 +9,10 @@
     tools:context="uz.avaz.asus.saveit.StartActivity">
 
     <ProgressBar
-        android:layout_gravity="center"
+        android:layout_centerInParent="true"
         android:progress="25"
         android:max="100"
         android:layout_width="50dp"
-        android:layout_height="match_parent" />
+        android:layout_height="50dp" />
 
-</LinearLayout>
+</RelativeLayout>
