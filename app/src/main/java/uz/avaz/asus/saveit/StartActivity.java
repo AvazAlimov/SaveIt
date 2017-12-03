@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -77,6 +78,12 @@ public class StartActivity extends AppCompatActivity {
         return networkInfo != null && networkInfo.isConnected();
     }
 
+    public void goToMainWindow(View view) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
     @SuppressLint("StaticFieldLeak")
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -95,9 +102,8 @@ public class StartActivity extends AppCompatActivity {
             } else {
                 Tools.products = result;
                 Tools.init();
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                findViewById(R.id.progressbar).setVisibility(View.GONE);
+                findViewById(R.id.go_button).setVisibility(View.VISIBLE);
             }
             mode++;
         }
