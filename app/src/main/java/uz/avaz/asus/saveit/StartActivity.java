@@ -41,7 +41,6 @@ public class StartActivity extends AppCompatActivity {
         }
     }
 
-
     public static String GET(String url) {
         InputStream inputStream;
         String result = "";
