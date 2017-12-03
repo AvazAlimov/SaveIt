@@ -2,6 +2,8 @@ package uz.avaz.asus.saveit;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -22,13 +24,14 @@ import java.io.InputStreamReader;
 
 public class StartActivity extends AppCompatActivity {
     private int mode = 0;
+    private Context context;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+        context = this;
         if (isConnected()) {
             Log.e("NETWORK:", "You are connected");
             new HttpAsyncTask().execute("https://unews-hub.000webhostapp.com/api/markets");
@@ -92,6 +95,9 @@ public class StartActivity extends AppCompatActivity {
             } else {
                 Tools.products = result;
                 Tools.init();
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
             mode++;
         }
