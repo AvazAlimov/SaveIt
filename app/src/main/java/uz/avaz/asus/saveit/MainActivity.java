@@ -86,4 +86,14 @@ public class MainActivity extends AppCompatActivity {
             container.addView(item);
         }
     }
+
+    public void switchScrolls(View view) {
+        if(findViewById(R.id.market_scroll).getVisibility() == View.VISIBLE){
+            findViewById(R.id.market_scroll).setVisibility(View.GONE);
+            findViewById(R.id.product_scroll).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.market_scroll).setVisibility(View.VISIBLE);
+            findViewById(R.id.product_scroll).setVisibility(View.GONE);
+        }
+    }
 }
