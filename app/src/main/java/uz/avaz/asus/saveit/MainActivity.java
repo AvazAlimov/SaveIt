@@ -1,5 +1,6 @@
 package uz.avaz.asus.saveit;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //openMarket(v);
+                    openMarket(v);
                 }
             });
 
@@ -86,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
             item.addView(layout);
             container.addView(item);
         }
+    }
+
+    private void openMarket(View v) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("market", (int) v.getTag());
+        startActivity(intent);
     }
 
     private void addProducts() {

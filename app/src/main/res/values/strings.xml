@@ -13,4 +13,5 @@
     <string name="expirydate">Срок годности до</string>
     <string name="price">Цена</string>
     <string name="sum">сум</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

@@ -70,4 +70,11 @@ class Tools {
         Log.e("CATEGORIES SIZE", String.valueOf(categories_array.size()));
         Log.e("PRODUCTS SIZE", String.valueOf(products_array.size()));
     }
+
+    static Market findMarket(int id) {
+        for (Market market : markets_array)
+            if (market.id == id)
+                return market;
+        return null;
+    }
 }
