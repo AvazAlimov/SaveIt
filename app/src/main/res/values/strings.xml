@@ -7,4 +7,10 @@
     <string name="login">Войти</string>
     <string name="hackathon">Hackathon 2017</string>
     <string name="markets">Магазины</string>
+    <string name="market">Магазин</string>
+    <string name="products">Продукты</string>
+    <string name="category">Категория</string>
+    <string name="expirydate">Срок годности до</string>
+    <string name="price">Цена</string>
+    <string name="sum">сум</string>
 </resources>
