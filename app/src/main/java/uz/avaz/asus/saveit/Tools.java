@@ -15,10 +15,13 @@ class Tools {
 
     static ArrayList<Market> markets_array;
     static ArrayList<Category> categories_array;
+    static ArrayList<Product> products_array;
 
     static void init() {
         markets_array = new ArrayList<>();
         categories_array = new ArrayList<>();
+        products_array = new ArrayList<>();
+
         JSONObject json;
         try {
             json = new JSONObject(markets);
@@ -43,11 +46,28 @@ class Tools {
                 categories_array.add(category);
             }
 
+            json = new JSONObject(products);
+            articles = json.getJSONArray("data");
+            for (int i = 0; i < articles.length(); i++) {
+                Product product = new Product();
+                product.id = articles.getJSONObject(i).getInt("id");
+                product.name = articles.getJSONObject(i).getString("name");
+                product.date = articles.getJSONObject(i).getString("expirydate");
+                product.originalprice = articles.getJSONObject(i).getDouble("originalprice");
+                product.discont = articles.getJSONObject(i).getDouble("discont");
+                product.newprice = articles.getJSONObject(i).getDouble("newprice");
+                product.unit = articles.getJSONObject(i).getString("unit");
+                product.market = articles.getJSONObject(i).getInt("market");
+                product.category = articles.getJSONObject(i).getInt("category");
+                products_array.add(product);
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         Log.e("MARKETS SIZE", String.valueOf(markets_array.size()));
         Log.e("CATEGORIES SIZE", String.valueOf(categories_array.size()));
+        Log.e("PRODUCTS SIZE", String.valueOf(products_array.size()));
     }
 }
