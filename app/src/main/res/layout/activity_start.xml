@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:background="@android:color/white"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context="uz.avaz.asus.saveit.StartActivity">
 
-    <ProgressBar
-        android:layout_centerInParent="true"
-        android:progress="25"
-        android:max="100"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/ic_saveit" />
 
-</RelativeLayout>
+    <ProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:max="100"
+        android:progress="25" />
+
+    <Button
+        android:layout_gravity="center"
+        android:text="@string/go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
