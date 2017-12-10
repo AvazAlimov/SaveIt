@@ -15,14 +15,15 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
         android:contentDescription="@string/logo"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:scaleType="fitEnd"
-        android:src="@drawable/ic_saveit" />
+        android:scaleType="center"
+        android:src="@drawable/ic_image2vector" />
 
     <TextView
+        android:paddingTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -77,9 +78,10 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:text="@string/register"
-            android:textColor="#009688"
+            android:textColor="#F44336"
             tools:ignore="ButtonStyle"
-            android:onClick="onClick"/>
+            />
+
 
         <Button
             android:id="@+id/signin"
@@ -92,9 +94,9 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:text="@string/login"
-            android:textColor="#009688"
+            android:textColor="#F44336"
             tools:ignore="ButtonStyle"
-            android:onClick="onClick"/>
+            />
     </LinearLayout>
     
     <View
