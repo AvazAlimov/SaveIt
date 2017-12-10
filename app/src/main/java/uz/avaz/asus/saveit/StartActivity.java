@@ -6,24 +6,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
+@SuppressWarnings({"NullableProblems", "ConstantConditions"})
 public class StartActivity extends AppCompatActivity {
-    private int mode = 0;
     private Context context;
 
     @SuppressLint("SetTextI18n")
@@ -32,41 +27,8 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         context = this;
-        if (isConnected()) {
-            Log.e("NETWORK:", "You are connected");
-            new HttpAsyncTask().execute("https://unews-hub.000webhostapp.com/api/markets");
-        } else {
-            Log.e("NETWORK:", "You are NOT connected");
-        }
-    }
-
-    public static String GET(String url) {
-        InputStream inputStream;
-        String result = "";
-        try {
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
-            inputStream = httpResponse.getEntity().getContent();
-            if (inputStream != null)
-                result = convertInputStreamToString(inputStream);
-            else
-                result = "Did not work!";
-        } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
-        }
-        return result;
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        String line;
-        StringBuilder result = new StringBuilder();
-        while ((line = bufferedReader.readLine()) != null)
-            result.append(line);
-
-        inputStream.close();
-        return result.toString();
-
+        if (isConnected())
+            initMarkets();
     }
 
     public boolean isConnected() {
@@ -82,28 +44,44 @@ public class StartActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-            return GET(urls[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if (mode == 0) {
-                Tools.markets = result;
-                new HttpAsyncTask().execute("https://unews-hub.000webhostapp.com/api/categories");
-            } else if (mode == 1) {
-                Tools.categories = result;
-                new HttpAsyncTask().execute("https://unews-hub.000webhostapp.com/api/products");
-            } else {
-                Tools.products = result;
-                Tools.init();
-                findViewById(R.id.progressbar).setVisibility(View.GONE);
-                findViewById(R.id.go_button).setVisibility(View.VISIBLE);
+    void initMarkets() {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://saveit2.000webhostapp.com/api/").addConverterFactory(GsonConverterFactory.create()).build();
+        final Tools.API api = retrofit.create(Tools.API.class);
+        Call<Tools.MarketResult> marketResultCall = api.getMarkets();
+        marketResultCall.enqueue(new Callback<Tools.MarketResult>() {
+            @Override
+            public void onResponse(Call<Tools.MarketResult> call, Response<Tools.MarketResult> response) {
+                if (response.body().getStatus() == 1)
+                    Tools.markets_array = response.body().getData();
+                Call<Tools.CategoryResult> categoryResultCall = api.getCategories();
+                categoryResultCall.enqueue(new Callback<Tools.CategoryResult>() {
+                    @Override
+                    public void onResponse(Call<Tools.CategoryResult> call, Response<Tools.CategoryResult> response) {
+                        if (response.body().getStatus() == 1)
+                            Tools.categories_array = response.body().getData();
+                        Call<Tools.ProductResult> productResultCall = api.getProducts();
+                        productResultCall.enqueue(new Callback<Tools.ProductResult>() {
+                            @Override
+                            public void onResponse(Call<Tools.ProductResult> call, Response<Tools.ProductResult> response) {
+                                if (response.body().getStatus() == 1)
+                                    Tools.products_array = response.body().getData();
+                                findViewById(R.id.progressbar).setVisibility(View.GONE);
+                                findViewById(R.id.go_button).setVisibility(View.VISIBLE);
+                            }
+                            @Override
+                            public void onFailure(Call<Tools.ProductResult> call, Throwable t) {
+                            }
+                        });
+                    }
+                    @Override
+                    public void onFailure(Call<Tools.CategoryResult> call, Throwable t) {
+                    }
+                });
             }
-            mode++;
-        }
+            @Override
+            public void onFailure(Call<Tools.MarketResult> call, Throwable t) {
+            }
+        });
     }
+
 }

@@ -1,80 +1,123 @@
 package uz.avaz.asus.saveit;
 
-import android.util.Log;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.List;
 
-import java.util.ArrayList;
+import retrofit2.Call;
+import retrofit2.http.GET;
+
 
 class Tools {
-    static String markets = "";
-    static String categories = "";
-    static String products = "";
+    static List<Market> markets_array;
+    static List<Category> categories_array;
+    static List<Product> products_array;
 
-    static ArrayList<Market> markets_array;
-    static ArrayList<Category> categories_array;
-    static ArrayList<Product> products_array;
 
-    static void init() {
-        markets_array = new ArrayList<>();
-        categories_array = new ArrayList<>();
-        products_array = new ArrayList<>();
-
-        JSONObject json;
-        try {
-            json = new JSONObject(markets);
-            JSONArray articles = json.getJSONArray("data");
-            for (int i = 0; i < articles.length(); i++) {
-                Market market = new Market();
-                market.id = articles.getJSONObject(i).getInt("id");
-                market.name = articles.getJSONObject(i).getString("name");
-                market.address = articles.getJSONObject(i).getString("address");
-                market.phone = articles.getJSONObject(i).getString("phone");
-                market.latitude = articles.getJSONObject(i).getDouble("latitude");
-                market.longitude = articles.getJSONObject(i).getDouble("longitude");
-                markets_array.add(market);
-            }
-
-            json = new JSONObject(categories);
-            articles = json.getJSONArray("data");
-            for (int i = 0; i < articles.length(); i++) {
-                Category category = new Category();
-                category.id = articles.getJSONObject(i).getInt("id");
-                category.name = articles.getJSONObject(i).getString("name");
-                categories_array.add(category);
-            }
-
-            json = new JSONObject(products);
-            articles = json.getJSONArray("data");
-            for (int i = 0; i < articles.length(); i++) {
-                Product product = new Product();
-                product.id = articles.getJSONObject(i).getInt("id");
-                product.name = articles.getJSONObject(i).getString("name");
-                product.date = articles.getJSONObject(i).getString("expirydate");
-                product.originalprice = articles.getJSONObject(i).getDouble("originalprice");
-                product.discont = articles.getJSONObject(i).getDouble("discont");
-                product.newprice = articles.getJSONObject(i).getDouble("newprice");
-                product.unit = articles.getJSONObject(i).getString("unit");
-                product.market = articles.getJSONObject(i).getInt("market");
-                product.category = articles.getJSONObject(i).getInt("category");
-                products_array.add(product);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        Log.e("MARKETS SIZE", String.valueOf(markets_array.size()));
-        Log.e("CATEGORIES SIZE", String.valueOf(categories_array.size()));
-        Log.e("PRODUCTS SIZE", String.valueOf(products_array.size()));
-    }
 
     static Market findMarket(int id) {
         for (Market market : markets_array)
             if (market.id == id)
                 return market;
         return null;
+    }
+
+    interface API {
+        @GET("/api/markets")
+        Call<MarketResult> getMarkets();
+
+        @GET("/api/categories")
+        Call<CategoryResult> getCategories();
+
+        @GET("/api/products")
+        Call<ProductResult> getProducts();
+    }
+
+    class MarketResult {
+        @SerializedName("data")
+        @Expose
+        private List<Market> data;
+        @SerializedName("status")
+        @Expose
+        private Integer status;
+
+        MarketResult() {
+
+        }
+
+        public void setData(List<Market> data) {
+            this.data = data;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        int getStatus() {
+            return status;
+        }
+
+        public List<Market> getData() {
+            return data;
+        }
+    }
+
+    class CategoryResult {
+        @SerializedName("data")
+        @Expose
+        private List<Category> data;
+        @SerializedName("status")
+        @Expose
+        private Integer status;
+
+        CategoryResult() {
+
+        }
+
+        public void setData(List<Category> data) {
+            this.data = data;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        int getStatus() {
+            return status;
+        }
+
+        public List<Category> getData() {
+            return data;
+        }
+    }
+
+    class ProductResult {
+        @SerializedName("data")
+        @Expose
+        private List<Product> data;
+        @SerializedName("status")
+        @Expose
+        private Integer status;
+
+        ProductResult() {
+
+        }
+
+        public void setData(List<Product> data) {
+            this.data = data;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        int getStatus() {
+            return status;
+        }
+
+        public List<Product> getData() {
+            return data;
+        }
     }
 }

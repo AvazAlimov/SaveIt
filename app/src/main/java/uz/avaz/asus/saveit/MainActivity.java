@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout.LayoutParams address_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             address_lp.setMargins(size, 0, size, 0);
             address.setLayoutParams(address_lp);
-            address.setText(String.format("%s: %s\n%s: %s\n%s: %s\n%s: %s%s", getString(R.string.market), findMarketName(product.market), getString(R.string.category), findCategoryName(product.category), getString(R.string.expirydate), product.date, getString(R.string.price), product.newprice, getString(R.string.sum)));
+            address.setText(String.format("%s: %s\n%s: %s\n%s: %s\n%s: %s%s", getString(R.string.market), findMarketName(product.market), getString(R.string.category), findCategoryName(product.category), getString(R.string.expirydate), product.date, getString(R.string.price), product.new_price, getString(R.string.sum)));
             address.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
             address.setTextColor(Color.BLACK);
 
