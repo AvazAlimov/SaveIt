@@ -40,7 +40,8 @@
         <EditText
             android:layout_width="270dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="@dimen/size_16dp" />
+            android:layout_marginLeft="@dimen/size_16dp"
+            android:textColor="@color/colorGrey"/>
     </LinearLayout>
 
     <LinearLayout
@@ -48,7 +49,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="28dp">
-
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -56,7 +56,8 @@
         <EditText
             android:layout_width="270dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="@dimen/size_16dp" />
+            android:layout_marginLeft="@dimen/size_16dp"
+            android:textColor="@color/colorGrey"/>
 
     </LinearLayout>
 
@@ -73,6 +74,5 @@
             android:background="@drawable/button_border"
             android:textColor="@color/colorGrey"
             />
-
     </LinearLayout>
 </LinearLayout>
