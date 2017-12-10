@@ -1,9 +1,9 @@
 <resources>
+    <string name="register">Зарегистрироваться</string>
     <string name="app_name">SaveIt</string>
     <string name="logo">logo</string>
     <string name="go">Перейти</string>
     <string name="slogan">Сэкономьте деньги с нами</string>
-    <string name="register">Зарегистрироваться</string>
     <string name="login">Войти</string>
     <string name="hackathon">Hackathon 2017</string>
     <string name="markets">Магазины</string>

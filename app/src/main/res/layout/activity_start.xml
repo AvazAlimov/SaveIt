@@ -67,6 +67,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -77,9 +78,11 @@
             android:paddingRight="8dp"
             android:text="@string/register"
             android:textColor="#009688"
-            tools:ignore="ButtonStyle" />
+            tools:ignore="ButtonStyle"
+            android:onClick="onClick"/>
 
         <Button
+            android:id="@+id/signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -90,7 +93,8 @@
             android:paddingRight="8dp"
             android:text="@string/login"
             android:textColor="#009688"
-            tools:ignore="ButtonStyle" />
+            tools:ignore="ButtonStyle"
+            android:onClick="onClick"/>
     </LinearLayout>
     
     <View
