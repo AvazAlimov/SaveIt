@@ -14,4 +14,8 @@
     <string name="price">Цена</string>
     <string name="sum">сум</string>
     <string name="title_activity_maps">Map</string>
+    <string name="deal1">Покупайте товары по</string>
+    <string name="deal2">выгодной цене</string>
+    <string name="discount1">Находите товары по</string>
+    <string name="discount2">низким ценам</string>
 </resources>
