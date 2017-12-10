@@ -2,7 +2,7 @@ package uz.avaz.asus.saveit;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
+@SuppressWarnings("unused")
 public class Product {
     @SerializedName("id")
     @Expose

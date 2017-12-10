@@ -8,13 +8,10 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-
 class Tools {
     static List<Market> markets_array;
     static List<Category> categories_array;
     static List<Product> products_array;
-
-
 
     static Market findMarket(int id) {
         for (Market market : markets_array)
@@ -34,6 +31,7 @@ class Tools {
         Call<ProductResult> getProducts();
     }
 
+    @SuppressWarnings("unused")
     class MarketResult {
         @SerializedName("data")
         @Expose
@@ -62,7 +60,7 @@ class Tools {
             return data;
         }
     }
-
+    @SuppressWarnings("unused")
     class CategoryResult {
         @SerializedName("data")
         @Expose
@@ -91,7 +89,7 @@ class Tools {
             return data;
         }
     }
-
+    @SuppressWarnings("unused")
     class ProductResult {
         @SerializedName("data")
         @Expose
