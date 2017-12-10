@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -23,12 +22,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class StartActivity extends AppCompatActivity implements View.OnClickListener{
+public class StartActivity extends AppCompatActivity {
     private int mode = 0;
     private Context context;
-
-    Button register;
-    Button signin;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -41,24 +37,6 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
             new HttpAsyncTask().execute("https://unews-hub.000webhostapp.com/api/markets");
         } else {
             Log.e("NETWORK:", "You are NOT connected");
-        }
-
-        register = (Button) findViewById(R.id.register);
-        signin = (Button) findViewById(R.id.signin);
-    }
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.register:
-                Intent intent = new Intent(context, Register.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                break;
-            case R.id.signin:
-                Intent intent1 = new Intent(context, Signin.class);
-                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent1);
-                break;
         }
     }
 
@@ -104,8 +82,6 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
-
-
     @SuppressLint("StaticFieldLeak")
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
         @Override
@@ -130,6 +106,4 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
             mode++;
         }
     }
-
-
 }
