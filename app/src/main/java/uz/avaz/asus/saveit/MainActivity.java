@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import uz.avaz.asus.saveit.Classes.Market;
+import uz.avaz.asus.saveit.Classes.Product;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             lp.setMargins(0, size, 0, 0);
             item.setLayoutParams(lp);
-            item.setTag(market.id);
+            item.setTag(market.getId());
             item.setBackgroundResource(R.drawable.item);
             item.setClickable(true);
             item.setOrientation(LinearLayout.HORIZONTAL);
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout.LayoutParams name_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             name_lp.setMargins(size, 0, size, 0);
             name.setLayoutParams(name_lp);
-            name.setText(market.name);
+            name.setText(market.getName());
             name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             name.setTextColor(Color.BLACK);
             name.setTypeface(name.getTypeface(), Typeface.BOLD);
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout.LayoutParams address_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             address_lp.setMargins(size, 0, size, 0);
             address.setLayoutParams(address_lp);
-            address.setText(market.address);
+            address.setText(market.getAddress());
             address.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
             address.setTextColor(Color.BLACK);
 
@@ -105,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             lp.setMargins(0, size, 0, 0);
             item.setLayoutParams(lp);
-            item.setTag(product.id);
+            item.setTag(product.getId());
             item.setBackgroundResource(R.drawable.item);
             item.setClickable(true);
             item.setOrientation(LinearLayout.HORIZONTAL);
@@ -133,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout.LayoutParams name_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             name_lp.setMargins(size, 0, size, 0);
             name.setLayoutParams(name_lp);
-            name.setText(product.name);
+            name.setText(product.getName());
             name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             name.setTextColor(Color.BLACK);
             name.setTypeface(name.getTypeface(), Typeface.BOLD);
@@ -142,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout.LayoutParams address_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             address_lp.setMargins(size, 0, size, 0);
             address.setLayoutParams(address_lp);
-            address.setText(String.format("%s: %s\n%s: %s\n%s: %s\n%s: %s%s", getString(R.string.market), findMarketName(product.market), getString(R.string.category), findCategoryName(product.category), getString(R.string.expirydate), product.date, getString(R.string.price), product.new_price, getString(R.string.sum)));
+            address.setText(String.format("%s: %s\n%s: %s\n%s: %s\n%s: %s%s", getString(R.string.market), findMarketName(product.getMarket()), getString(R.string.category), findCategoryName(product.getCategory()), getString(R.string.expirydate), product.getDate(), getString(R.string.price), product.getNew_price(), getString(R.string.sum)));
             address.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
             address.setTextColor(Color.BLACK);
 
@@ -157,15 +160,15 @@ public class MainActivity extends AppCompatActivity {
 
     public String findCategoryName(int id) {
         for (int i = 0; i < Tools.categories_array.size(); i++)
-            if (Tools.categories_array.get(i).id == id)
-                return Tools.categories_array.get(i).name;
+            if (Tools.categories_array.get(i).getId() == id)
+                return Tools.categories_array.get(i).getName();
         return "";
     }
 
     public String findMarketName(int id) {
         for (int i = 0; i < Tools.markets_array.size(); i++)
-            if (Tools.markets_array.get(i).id == id)
-                return Tools.markets_array.get(i).name;
+            if (Tools.markets_array.get(i).getId() == id)
+                return Tools.markets_array.get(i).getName();
         return "";
     }
 

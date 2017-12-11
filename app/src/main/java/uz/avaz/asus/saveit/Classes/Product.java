@@ -1,39 +1,40 @@
-package uz.avaz.asus.saveit;
+package uz.avaz.asus.saveit.Classes;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 @SuppressWarnings("unused")
 public class Product {
     @SerializedName("id")
     @Expose
-    Integer id;
+    private Integer id;
     @SerializedName("category")
     @Expose
-    Integer category;
+    private Integer category;
     @SerializedName("market")
     @Expose
-    Integer market;
+    private Integer market;
     @SerializedName("name")
     @Expose
-    String name;
+    private String name;
     @SerializedName("date")
     @Expose
-    String date;
+    private String date;
     @SerializedName("price")
     @Expose
-    Double price;
+    private Double price;
     @SerializedName("discount")
     @Expose
-    Double discount;
+    private Double discount;
     @SerializedName("new_price")
     @Expose
-    Double new_price;
+    private Double new_price;
     @SerializedName("unit")
     @Expose
-    String unit;
+    private String unit;
     @SerializedName("image")
     @Expose
-    String image;
+    private String image;
 
     public void setId(Integer id) {
         this.id = id;

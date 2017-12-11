@@ -1,12 +1,15 @@
 package uz.avaz.asus.saveit;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 import retrofit2.Call;
+import uz.avaz.asus.saveit.Classes.Category;
+import uz.avaz.asus.saveit.Classes.Market;
+import uz.avaz.asus.saveit.Classes.Product;
 import retrofit2.http.GET;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 class Tools {
     static List<Market> markets_array;
@@ -15,7 +18,7 @@ class Tools {
 
     static Market findMarket(int id) {
         for (Market market : markets_array)
-            if (market.id == id)
+            if (market.getId() == id)
                 return market;
         return null;
     }
@@ -60,6 +63,7 @@ class Tools {
             return data;
         }
     }
+
     @SuppressWarnings("unused")
     class CategoryResult {
         @SerializedName("data")
@@ -89,6 +93,7 @@ class Tools {
             return data;
         }
     }
+
     @SuppressWarnings("unused")
     class ProductResult {
         @SerializedName("data")

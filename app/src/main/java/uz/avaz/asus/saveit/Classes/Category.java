@@ -1,4 +1,4 @@
-package uz.avaz.asus.saveit;
+package uz.avaz.asus.saveit.Classes;
 
 
 import com.google.gson.annotations.Expose;
@@ -7,13 +7,13 @@ import com.google.gson.annotations.SerializedName;
 public class Category {
     @SerializedName("id")
     @Expose
-    Integer id;
+    private Integer id;
     @SerializedName("name")
     @Expose
-    String name;
+    private String name;
     @SerializedName("image")
     @Expose
-    String image;
+    private String image;
 
     public void setName(String name) {
         this.name = name;

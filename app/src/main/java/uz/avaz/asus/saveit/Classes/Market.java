@@ -1,36 +1,37 @@
-package uz.avaz.asus.saveit;
+package uz.avaz.asus.saveit.Classes;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 @SuppressWarnings("unused")
-class Market {
+public class Market {
     @SerializedName("id")
     @Expose
-    Integer id;
+    private Integer id;
     @SerializedName("login")
     @Expose
-    String login;
+    private String login;
     @SerializedName("password")
     @Expose
-    String password;
+    private String password;
     @SerializedName("name")
     @Expose
-    String name;
+    private String name;
     @SerializedName("address")
     @Expose
-    String address;
+    private String address;
     @SerializedName("phone")
     @Expose
-    String phone;
+    private String phone;
     @SerializedName("latitude")
     @Expose
-    Double latitude;
+    private Double latitude;
     @SerializedName("longitude")
     @Expose
-    Double longitude;
+    private Double longitude;
     @SerializedName("image")
     @Expose
-    String image;
+    private String image;
 
     public void setAddress(String address) {
         this.address = address;
@@ -68,39 +69,39 @@ class Market {
         this.phone = phone;
     }
 
-    Double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    Double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    Integer getId() {
+    public Integer getId() {
         return id;
     }
 
-    String getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    String getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    String getLogin() {
+    public String getLogin() {
         return login;
     }
 
-    String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    String getImage() {
+    public String getImage() {
         return image;
     }
 }

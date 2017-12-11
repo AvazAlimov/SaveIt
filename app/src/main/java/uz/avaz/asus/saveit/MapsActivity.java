@@ -10,6 +10,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import uz.avaz.asus.saveit.Classes.Market;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -41,8 +43,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         Market market = Tools.findMarket(number);
         assert market != null;
-        String title = market.name + " " + market.phone;
-        LatLng coordinates = new LatLng(market.latitude, market.longitude);
+        String title = market.getName() + " " + market.getPhone();
+        LatLng coordinates = new LatLng(market.getLatitude(), market.getLongitude());
         mMap.addMarker(new MarkerOptions().position(coordinates).title(title));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15.0f));
     }
