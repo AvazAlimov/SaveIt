@@ -16,7 +16,7 @@
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_saveit" />
+        android:src="@drawable/ic_logo" />
 
     <TextView
         android:layout_width="wrap_content"
