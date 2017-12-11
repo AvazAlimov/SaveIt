@@ -104,7 +104,7 @@ public class GuideActivity extends AppCompatActivity {
             LinearLayout layout = findViewById(R.id.toggle_container);
             for (int i = 0; i < layout.getChildCount(); i++)
                 if (i == position)
-                    layout.getChildAt(i).setPadding(0, 0, 0, 10);
+                    layout.getChildAt(i).setPadding(0, 0, 0, 16);
                 else
                     layout.getChildAt(i).setPadding(0, 0, 0, 0);
         }

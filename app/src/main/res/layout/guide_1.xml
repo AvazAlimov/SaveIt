@@ -15,9 +15,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="@string/welcome"
         android:textColor="@color/colorGrey"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
 
     <ImageView

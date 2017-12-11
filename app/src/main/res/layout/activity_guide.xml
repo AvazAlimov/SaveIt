@@ -42,7 +42,9 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/dot" />
+                android:src="@drawable/dot"
+                android:layout_marginRight="@dimen/size_16dp"
+                android:layout_marginLeft="@dimen/size_16dp"/>
 
             <ImageButton
                 android:id="@+id/toggle_3"
@@ -55,11 +57,9 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_margin="@dimen/size_16dp"
             android:background="@color/teal"
             android:text="@string/next"
             android:textSize="18sp" />

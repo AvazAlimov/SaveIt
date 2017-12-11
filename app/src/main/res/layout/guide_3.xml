@@ -16,7 +16,7 @@
         android:gravity="center"
         android:textStyle="bold"
         android:textColor="@color/colorGrey"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:layout_marginBottom="20dp"
         android:text="@string/welcome" />
 
