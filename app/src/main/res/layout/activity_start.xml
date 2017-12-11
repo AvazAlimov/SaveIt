@@ -78,7 +78,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:text="@string/register"
-            android:textColor="#F44336"
+            android:textColor="@color/teal"
             tools:ignore="ButtonStyle"
             />
 
@@ -94,7 +94,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:text="@string/login"
-            android:textColor="#F44336"
+            android:textColor="@color/teal"
             tools:ignore="ButtonStyle"
             />
     </LinearLayout>
