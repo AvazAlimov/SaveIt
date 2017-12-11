@@ -53,7 +53,7 @@ public class GuideActivity extends AppCompatActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            return inflater.inflate(getContext().getResources().getIdentifier("activity_" + getArguments().getInt(ARG_SECTION_NUMBER),
+            return inflater.inflate(getContext().getResources().getIdentifier("guide_" + getArguments().getInt(ARG_SECTION_NUMBER),
                     "layout", getContext().getPackageName()),
                     container,
                     false);
