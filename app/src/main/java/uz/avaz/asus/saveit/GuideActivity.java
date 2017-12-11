@@ -1,5 +1,6 @@
 package uz.avaz.asus.saveit;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,6 +27,12 @@ public class GuideActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         viewPager.addOnPageChangeListener(new PageListener());
+    }
+
+    public void goToStartWindow(View view) {
+        Intent intent = new Intent(this, StartActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     public static class PlaceholderFragment extends Fragment {
@@ -102,9 +109,10 @@ public class GuideActivity extends AppCompatActivity {
     private class PageListener extends ViewPager.SimpleOnPageChangeListener {
         public void onPageSelected(int position) {
             LinearLayout layout = findViewById(R.id.toggle_container);
+            int size = getResources().getDimensionPixelSize(R.dimen.size_16dp);
             for (int i = 0; i < layout.getChildCount(); i++)
                 if (i == position)
-                    layout.getChildAt(i).setPadding(0, 0, 0, 16);
+                    layout.getChildAt(i).setPadding(0, 0, 0, size);
                 else
                     layout.getChildAt(i).setPadding(0, 0, 0, 0);
         }
