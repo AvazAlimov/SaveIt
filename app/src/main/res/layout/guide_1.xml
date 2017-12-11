@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context="uz.avaz.asus.saveit.MainActivity">
+    tools:context="uz.avaz.asus.saveit.Register">
 
     <TextView
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:layout_height="260dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_business_partnership" />
+        android:src="@drawable/ic_location" />
 
 
     <TextView
@@ -33,7 +33,7 @@
         android:gravity="center"
         android:textColor="@color/colorGrey"
         android:textSize="16sp"
-        android:text="@string/deal1"
+        android:text="@string/global_location"
         />
 
 
@@ -46,7 +46,7 @@
         android:layout_marginTop="60dp"
 
         android:background="@color/teal"
-        android:text="@string/fine"
+        android:text="@string/next"
         android:textSize="18sp" />
 
     <LinearLayout
