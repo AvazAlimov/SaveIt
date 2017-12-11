@@ -20,7 +20,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:scaleType="center"
-        android:src="@drawable/ic_image2vector" />
+        android:src="@drawable/ic_saveit" />
 
     <TextView
         android:paddingTop="20dp"

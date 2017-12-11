@@ -20,4 +20,6 @@
     <string name="next">ВПЕРЕД</string>
     <string name="welcome">Добро Пожаловать в SaveIt</string>
     <string name="fine">Отлично</string>
+    <string name="title_activity_guide">GuideActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>
