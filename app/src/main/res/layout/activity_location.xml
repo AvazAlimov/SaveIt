@@ -45,7 +45,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="60dp"
 
-        android:background="#E65100"
+        android:background="@color/teal"
         android:text="@string/next"
         android:textSize="18sp" />
 
