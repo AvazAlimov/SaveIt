@@ -5,15 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 
-public class Signin extends AppCompatActivity implements View.OnClickListener{
+public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
-
     }
 
-    @Override
-    public void onClick(View view) {
+    public void goBack(View view) {
+        onBackPressed();
+    }
+
+    public void login(View view) {
 
     }
 }

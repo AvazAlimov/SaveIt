@@ -44,6 +44,11 @@ public class StartActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToSignInWindow(View view) {
+        Intent intent = new Intent(context, SignInActivity.class);
+        startActivity(intent);
+    }
+
     private static class DownloadData extends AsyncTask<View, Void, View[]> {
         @SuppressWarnings("ConstantConditions")
         @Override

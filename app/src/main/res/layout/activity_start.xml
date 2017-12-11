@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center"
     tools:context="uz.avaz.asus.saveit.StartActivity">
 
     <ImageView
@@ -30,8 +30,8 @@
         android:layout_width="200dp"
         android:layout_height="1px"
         android:layout_gravity="center"
-        android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="4dp"
         android:background="@android:color/background_dark" />
 
     <ProgressBar
@@ -70,13 +70,12 @@
             android:layout_gravity="center"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/link"
+            android:background="@drawable/button_border"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:text="@string/register"
             android:textColor="@color/teal"
-            tools:ignore="ButtonStyle"
-            />
+            tools:ignore="ButtonStyle" />
 
 
         <Button
@@ -86,12 +85,12 @@
             android:layout_gravity="center"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/link"
+            android:background="@drawable/button_border"
+            android:onClick="goToSignInWindow"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:text="@string/login"
             android:textColor="@color/teal"
-            tools:ignore="ButtonStyle"
-            />
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 </LinearLayout>
