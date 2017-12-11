@@ -1,33 +1,34 @@
 package uz.avaz.asus.saveit;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import java.io.IOException;
+
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import uz.avaz.asus.saveit.Classes.*;
+import uz.avaz.asus.saveit.Services.WebAPI;
 
-@SuppressWarnings({"NullableProblems", "ConstantConditions"})
 public class StartActivity extends AppCompatActivity {
     private Context context;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         context = this;
+
         if (isConnected())
-            initMarkets();
+            new DownloadData().execute(findViewById(R.id.progressbar), findViewById(R.id.go_button));
     }
 
     public boolean isConnected() {
@@ -43,44 +44,30 @@ public class StartActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void initMarkets() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://saveit2.000webhostapp.com/api/").addConverterFactory(GsonConverterFactory.create()).build();
-        final Tools.API api = retrofit.create(Tools.API.class);
-        Call<Tools.MarketResult> marketResultCall = api.getMarkets();
-        marketResultCall.enqueue(new Callback<Tools.MarketResult>() {
-            @Override
-            public void onResponse(Call<Tools.MarketResult> call, Response<Tools.MarketResult> response) {
-                if (response.body().getStatus() == 1)
-                    Tools.markets_array = response.body().getData();
-                Call<Tools.CategoryResult> categoryResultCall = api.getCategories();
-                categoryResultCall.enqueue(new Callback<Tools.CategoryResult>() {
-                    @Override
-                    public void onResponse(Call<Tools.CategoryResult> call, Response<Tools.CategoryResult> response) {
-                        if (response.body().getStatus() == 1)
-                            Tools.categories_array = response.body().getData();
-                        Call<Tools.ProductResult> productResultCall = api.getProducts();
-                        productResultCall.enqueue(new Callback<Tools.ProductResult>() {
-                            @Override
-                            public void onResponse(Call<Tools.ProductResult> call, Response<Tools.ProductResult> response) {
-                                if (response.body().getStatus() == 1)
-                                    Tools.products_array = response.body().getData();
-                                findViewById(R.id.progressbar).setVisibility(View.GONE);
-                                findViewById(R.id.go_button).setVisibility(View.VISIBLE);
-                            }
-                            @Override
-                            public void onFailure(Call<Tools.ProductResult> call, Throwable t) {
-                            }
-                        });
-                    }
-                    @Override
-                    public void onFailure(Call<Tools.CategoryResult> call, Throwable t) {
-                    }
-                });
+    private static class DownloadData extends AsyncTask<View, Void, View[]> {
+        @SuppressWarnings("ConstantConditions")
+        @Override
+        protected View[] doInBackground(View... views) {
+            Retrofit retrofit = new Retrofit.Builder().baseUrl("https://saveit2.000webhostapp.com/api/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            final WebAPI api = retrofit.create(WebAPI.class);
+            final Call<MarketResult> marketResultCall = api.getMarkets();
+            final Call<CategoryResult> categoryResultCall = api.getCategories();
+            final Call<ProductResult> productResultCall = api.getProducts();
+            try {
+                Tools.markets_array = marketResultCall.execute().body().getData();
+                Tools.categories_array = categoryResultCall.execute().body().getData();
+                Tools.products_array = productResultCall.execute().body().getData();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            @Override
-            public void onFailure(Call<Tools.MarketResult> call, Throwable t) {
-            }
-        });
-    }
+            return views;
+        }
 
+        protected void onPostExecute(View... views) {
+            views[0].setVisibility(View.GONE);
+            views[1].setVisibility(View.VISIBLE);
+        }
+    }
 }
