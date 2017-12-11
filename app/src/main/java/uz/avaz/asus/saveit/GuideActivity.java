@@ -1,8 +1,6 @@
 package uz.avaz.asus.saveit;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,20 +9,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.LinearLayout;
 
 public class GuideActivity extends AppCompatActivity {
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-    private ViewPager mViewPager;
-    private LinearLayout pageContainer;
-    public Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
-
         init();
     }
 
@@ -33,8 +25,7 @@ public class GuideActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.container);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
-//        viewPager.addOnPageChangeListener(new PageListener());
-        pageContainer = findViewById(R.id.main_content);
+        viewPager.addOnPageChangeListener(new PageListener());
     }
 
     public static class PlaceholderFragment extends Fragment {
@@ -105,6 +96,17 @@ public class GuideActivity extends AppCompatActivity {
             } else {
                 view.setAlpha(0);
             }
+        }
+    }
+
+    private class PageListener extends ViewPager.SimpleOnPageChangeListener {
+        public void onPageSelected(int position) {
+            LinearLayout layout = findViewById(R.id.toggle_container);
+            for (int i = 0; i < layout.getChildCount(); i++)
+                if (i == position)
+                    layout.getChildAt(i).setPadding(0, 0, 0, 10);
+                else
+                    layout.getChildAt(i).setPadding(0, 0, 0, 0);
         }
     }
 }
