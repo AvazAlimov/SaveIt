@@ -27,8 +27,8 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         context = this;
 
-        if (isConnected())
-            new DownloadData().execute(findViewById(R.id.progressbar), findViewById(R.id.go_button));
+//        if (isConnected())
+        new DownloadData().execute(findViewById(R.id.progressbar), findViewById(R.id.go_button));
     }
 
     public boolean isConnected() {
@@ -53,7 +53,7 @@ public class StartActivity extends AppCompatActivity {
         @SuppressWarnings("ConstantConditions")
         @Override
         protected View[] doInBackground(View... views) {
-            Retrofit retrofit = new Retrofit.Builder().baseUrl("https://saveit2.000webhostapp.com/api/")
+            Retrofit retrofit = new Retrofit.Builder().baseUrl(Tools.TEMP_ADDRESS)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             final WebAPI api = retrofit.create(WebAPI.class);
