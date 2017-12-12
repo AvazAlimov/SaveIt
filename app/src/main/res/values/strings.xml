@@ -10,7 +10,7 @@
     <string name="market">Магазин</string>
     <string name="products">Продукты</string>
     <string name="category">Категория</string>
-    <string name="expirydate">Срок годности до</string>
+    <string name="expirydate">Срок годности</string>
     <string name="price">Цена</string>
     <string name="sum">сум</string>
     <string name="title_activity_maps">Map</string>
@@ -22,4 +22,9 @@
     <string name="fine">Отлично</string>
     <string name="title_activity_guide">GuideActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="productname">Названия продукта</string>
+    <string name="oldprice">Старая цена</string>
+    <string name="newprice">Новая цена</string>
+    <string name="share">Публиковать</string>
+
 </resources>
