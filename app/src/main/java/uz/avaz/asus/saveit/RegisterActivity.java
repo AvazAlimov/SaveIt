@@ -164,6 +164,7 @@ public class RegisterActivity extends FragmentActivity implements OnMapReadyCall
                     @SuppressWarnings("ConstantConditions")
                     @Override
                     public void onResponse(@NonNull Call<Result> call, @NonNull Response<Result> response) {
+                        Log.e("TAG", response.message());
                         if (response.body().getStatus() == 1) {
                             Tools.market = response.body().getMarket();
                             new DownloadData().execute(getBaseContext());
