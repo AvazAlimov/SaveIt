@@ -80,7 +80,7 @@ public class StartActivity extends AppCompatActivity {
         @SuppressWarnings("ConstantConditions")
         @Override
         protected View[] doInBackground(View... views) {
-            Retrofit retrofit = new Retrofit.Builder().baseUrl(Tools.TEMP_ADDRESS)
+            Retrofit retrofit = new Retrofit.Builder().baseUrl(Tools.BASE_ADDRESS)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             final WebAPI api = retrofit.create(WebAPI.class);

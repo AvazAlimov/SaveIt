@@ -3,6 +3,8 @@ package uz.avaz.asus.saveit.Classes;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import retrofit2.http.Part;
+
 @SuppressWarnings("unused")
 public class Market {
     @SerializedName("id")
@@ -30,7 +32,6 @@ public class Market {
     @Expose
     private Double longitude;
     @SerializedName("image")
-    @Expose
     private String image;
 
     public void setAddress(String address) {

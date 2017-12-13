@@ -45,7 +45,7 @@
             android:layout_marginTop="4dp"
             android:background="#33888888"
             android:hint="@string/login_hint"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:padding="12dp"
             android:textColor="@android:color/white" />
 

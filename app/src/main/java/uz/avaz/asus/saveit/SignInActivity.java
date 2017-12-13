@@ -66,7 +66,7 @@ public class SignInActivity extends AppCompatActivity {
         if (isConnected()) {
             findViewById(R.id.progressbar).setVisibility(View.VISIBLE);
             findViewById(R.id.go_button).setVisibility(View.GONE);
-            Retrofit retrofit = new Retrofit.Builder().baseUrl(Tools.TEMP_ADDRESS)
+            Retrofit retrofit = new Retrofit.Builder().baseUrl(Tools.BASE_ADDRESS)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             final WebAPI api = retrofit.create(WebAPI.class);
@@ -100,7 +100,6 @@ public class SignInActivity extends AppCompatActivity {
         } else {
             Log.e("TAG", "Not Connected");
         }
-
     }
 
     public boolean isConnected() {
@@ -114,7 +113,7 @@ public class SignInActivity extends AppCompatActivity {
         @SuppressWarnings("ConstantConditions")
         @Override
         protected Void doInBackground(Context... context) {
-            Retrofit retrofit = new Retrofit.Builder().baseUrl(Tools.TEMP_ADDRESS)
+            Retrofit retrofit = new Retrofit.Builder().baseUrl(Tools.BASE_ADDRESS)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             final WebAPI api = retrofit.create(WebAPI.class);
