@@ -7,4 +7,8 @@
     <color name="colorGrey">#2b3043</color>
     <color name="teal">#009688</color>
     <color name="background">#e5e3df</color>
+
+    <color name="color_1">#4EA2F5</color>
+    <color name="color_2">#40CCB5</color>
+    <color name="color_3">#FFC764</color>
 </resources>

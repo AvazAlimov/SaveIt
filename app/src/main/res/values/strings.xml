@@ -18,8 +18,16 @@
     <string name="discount1">Находите товары по низким ценам</string>
     <string name="global_location">Удобное место нахождения торговых точек</string>
     <string name="next">ВПЕРЕД</string>
+    <string name="skip">ПРОПУСТИТЬ</string>
     <string name="welcome">Добро Пожаловать в SaveIt</string>
     <string name="fine">Отлично</string>
     <string name="title_activity_guide">GuideActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="connection_error">Нет соединения</string>
+    <string name="login_hint">логин</string>
+    <string name="password_hint">пароль</string>
+    <string name="name_hint">название магазина</string>
+    <string name="phone_hint">номер телефона</string>
+    <string name="address_hint">адрес</string>
+    <string name="sign_up">Зарегистрироваться</string>
 </resources>

@@ -25,7 +25,6 @@ public class GuideActivity extends AppCompatActivity {
         SectionsPagerAdapter pagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.container);
         viewPager.setAdapter(pagerAdapter);
-        viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         viewPager.addOnPageChangeListener(new PageListener());
     }
 
@@ -51,10 +50,7 @@ public class GuideActivity extends AppCompatActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            return inflater.inflate(getContext().getResources().getIdentifier("guide_" + getArguments().getInt(ARG_SECTION_NUMBER),
-                    "layout", getContext().getPackageName()),
-                    container,
-                    false);
+            return inflater.inflate(getContext().getResources().getIdentifier("guide_" + getArguments().getInt(ARG_SECTION_NUMBER), "layout", getContext().getPackageName()), container, false);
         }
     }
 
@@ -74,47 +70,14 @@ public class GuideActivity extends AppCompatActivity {
         }
     }
 
-    public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
-        private static final float MIN_SCALE = 0.85f;
-        private static final float MIN_ALPHA = 0.80f;
-
-        public void transformPage(View view, float position) {
-            int pageWidth = view.getWidth();
-            int pageHeight = view.getHeight();
-
-            if (position < -1) {
-                view.setAlpha(0);
-
-            } else if (position <= 1) {
-                float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
-                float vertMargin = pageHeight * (1 - scaleFactor) / 2;
-                float horzMargin = pageWidth * (1 - scaleFactor) / 2;
-                if (position < 0) {
-                    view.setTranslationX(horzMargin - vertMargin / 2);
-                } else {
-                    view.setTranslationX(-horzMargin + vertMargin / 2);
-                }
-
-                view.setScaleX(scaleFactor);
-                view.setScaleY(scaleFactor);
-
-                view.setAlpha(MIN_ALPHA + (scaleFactor - MIN_SCALE) / (1 - MIN_SCALE) * (1 - MIN_ALPHA));
-
-            } else {
-                view.setAlpha(0);
-            }
-        }
-    }
-
     private class PageListener extends ViewPager.SimpleOnPageChangeListener {
         public void onPageSelected(int position) {
             LinearLayout layout = findViewById(R.id.toggle_container);
-            int size = getResources().getDimensionPixelSize(R.dimen.size_16dp);
             for (int i = 0; i < layout.getChildCount(); i++)
                 if (i == position)
-                    layout.getChildAt(i).setPadding(0, 0, 0, size);
+                    layout.getChildAt(i).setBackgroundResource(R.drawable.circle);
                 else
-                    layout.getChildAt(i).setPadding(0, 0, 0, 0);
+                    layout.getChildAt(i).setBackgroundResource(R.drawable.dot);
         }
     }
 }

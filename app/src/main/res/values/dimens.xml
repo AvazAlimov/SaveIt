@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="size_72dp">84dp</dimen>
-    <dimen name="size_16dp">10dp</dimen>
+    <dimen name="size_16dp">16dp</dimen>
     <dimen name="size_8dp">8dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>

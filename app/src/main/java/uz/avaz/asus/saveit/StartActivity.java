@@ -1,8 +1,10 @@
 package uz.avaz.asus.saveit;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -20,15 +22,35 @@ import uz.avaz.asus.saveit.Services.WebAPI;
 
 public class StartActivity extends AppCompatActivity {
     private Context context;
+    private AnimationDrawable animation;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         context = this;
 
-//        if (isConnected())
-        new DownloadData().execute(findViewById(R.id.progressbar), findViewById(R.id.go_button));
+        animation = (AnimationDrawable) findViewById(R.id.layout).getBackground();
+        animation.setExitFadeDuration(2000);
+        animation.start();
+
+        if (isConnected())
+            new DownloadData().execute(findViewById(R.id.progressbar), findViewById(R.id.go_button));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (animation != null && !animation.isRunning())
+            animation.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (animation != null && animation.isRunning())
+            animation.stop();
     }
 
     public boolean isConnected() {
@@ -46,6 +68,11 @@ public class StartActivity extends AppCompatActivity {
 
     public void goToSignInWindow(View view) {
         Intent intent = new Intent(context, SignInActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToSignUpWindow(View view) {
+        Intent intent = new Intent(context, RegisterActivity.class);
         startActivity(intent);
     }
 
@@ -71,7 +98,7 @@ public class StartActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(View... views) {
-            views[0].setVisibility(View.GONE);
+            views[0].setVisibility(View.INVISIBLE);
             views[1].setVisibility(View.VISIBLE);
         }
     }

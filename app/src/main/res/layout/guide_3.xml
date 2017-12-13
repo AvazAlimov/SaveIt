@@ -2,44 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_3"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
+        android:layout_margin="@dimen/size_16dp"
         android:text="@string/welcome"
-        android:textColor="@color/colorGrey"
-        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
-
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="172dp"
-        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_business_partnership" />
+        android:src="@drawable/ic_guide_3" />
 
     <TextView
-        android:layout_width="250dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_margin="@dimen/size_16dp"
         android:gravity="center"
         android:text="@string/deal1"
-        android:textColor="@color/colorGrey"
-        android:textSize="16sp" />
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
     <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="80dp"
-        android:layout_weight="1" />
+        android:layout_width="wrap_content"
+        android:layout_height="60dp" />
+
 </LinearLayout>

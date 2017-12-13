@@ -3,6 +3,7 @@ package uz.avaz.asus.saveit;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -30,9 +31,28 @@ import uz.avaz.asus.saveit.Services.WebAPI;
 
 
 public class SignInActivity extends AppCompatActivity {
+    AnimationDrawable animation;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
+        animation = (AnimationDrawable) findViewById(R.id.layout).getBackground();
+        animation.setExitFadeDuration(2000);
+        animation.start();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (animation != null && !animation.isRunning())
+            animation.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (animation != null && animation.isRunning())
+            animation.stop();
     }
 
     public void goBack(View view) {
@@ -40,7 +60,10 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        if (isConnected() || true) {
+        findViewById(R.id.login).setBackgroundColor(0x33888888);
+        findViewById(R.id.password).setBackgroundColor(0x33888888);
+
+        if (isConnected()) {
             findViewById(R.id.progressbar).setVisibility(View.VISIBLE);
             findViewById(R.id.go_button).setVisibility(View.GONE);
             Retrofit retrofit = new Retrofit.Builder().baseUrl(Tools.TEMP_ADDRESS)
@@ -59,6 +82,8 @@ public class SignInActivity extends AppCompatActivity {
                         Tools.market = response.body().getMarket();
                         new DownloadData().execute(getBaseContext());
                     } else {
+                        findViewById(R.id.login).setBackgroundColor(0x44F44336);
+                        findViewById(R.id.password).setBackgroundColor(0x44F44336);
                         findViewById(R.id.progressbar).setVisibility(View.GONE);
                         findViewById(R.id.go_button).setVisibility(View.VISIBLE);
                     }
@@ -66,12 +91,14 @@ public class SignInActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(@NonNull Call<Result> call, @NonNull Throwable t) {
+                    findViewById(R.id.login).setBackgroundColor(0x44F44336);
+                    findViewById(R.id.password).setBackgroundColor(0x44F44336);
                     findViewById(R.id.progressbar).setVisibility(View.GONE);
                     findViewById(R.id.go_button).setVisibility(View.VISIBLE);
                 }
             });
         } else {
-            ((TextView) findViewById(R.id.error)).setText(getResources().getIdentifier("connection_error", "string", getPackageName()));
+            Log.e("TAG", "Not Connected");
         }
 
     }

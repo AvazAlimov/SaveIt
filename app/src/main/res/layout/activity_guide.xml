@@ -26,42 +26,36 @@
             android:gravity="bottom|center_horizontal"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:paddingBottom="@dimen/size_16dp"
+            <View
                 android:id="@+id/toggle_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/dot" />
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/circle" />
 
-            <ImageButton
+            <View
                 android:id="@+id/toggle_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/dot"
-                android:layout_marginRight="@dimen/size_16dp"
-                android:layout_marginLeft="@dimen/size_16dp"/>
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/dot" />
 
-            <ImageButton
+            <View
                 android:id="@+id/toggle_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/dot" />
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/dot" />
         </LinearLayout>
 
         <Button
-            android:onClick="goToStartWindow"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/size_16dp"
+            android:padding="@dimen/size_16dp"
             android:background="@drawable/button"
-            android:text="@string/next"
+            android:onClick="goToStartWindow"
+            android:text="@string/skip"
             android:textSize="18sp" />
     </LinearLayout>
 
