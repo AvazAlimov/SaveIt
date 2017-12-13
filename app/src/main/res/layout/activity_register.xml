@@ -92,15 +92,14 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <EditText
+                <TextView
                     android:id="@+id/address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#33888888"
-                    android:enabled="false"
                     android:hint="@string/address_hint"
-                    android:inputType="text"
+                    android:scrollbars="horizontal"
                     android:padding="12dp"
                     android:textColor="@android:color/white" />
 
@@ -109,6 +108,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/button_darker"
                     android:contentDescription="@string/app_name"
+                    android:onClick="showMap"
                     android:padding="8dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_navigation" />
@@ -131,9 +131,32 @@
                 android:background="@drawable/button"
                 android:padding="@dimen/size_16dp"
                 android:text="@string/sign_up"
+                android:onClick="register"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/map_layout"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:textAllCaps="true"
+            android:layout_margin="@dimen/size_16dp"
+            android:background="@drawable/button_darker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ready"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -73,9 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/size_16dp"
             android:background="@drawable/button"
+            android:onClick="login"
             android:text="@string/login"
             android:textColor="@android:color/white" />
-            <!--android:onClick="login"-->
 
     </LinearLayout>
 
