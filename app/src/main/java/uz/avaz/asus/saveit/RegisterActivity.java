@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.AnimationDrawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -28,11 +29,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.GsonBuilder;
 
-import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,7 +56,7 @@ public class RegisterActivity extends FragmentActivity implements OnMapReadyCall
     private Context context;
     private double latitude;
     private double longitude;
-    private Uri selectedImage;
+    private String mediaPath;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -136,7 +135,7 @@ public class RegisterActivity extends FragmentActivity implements OnMapReadyCall
                 findViewById(R.id.go_button).setVisibility(View.GONE);
 
                 Retrofit retrofit = new Retrofit.Builder().baseUrl(Tools.BASE_ADDRESS)
-                        .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()))
+                        .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 final WebAPI api = retrofit.create(WebAPI.class);
 
@@ -149,27 +148,26 @@ public class RegisterActivity extends FragmentActivity implements OnMapReadyCall
                 market.setLatitude(latitude);
                 market.setLongitude(longitude);
                 MultipartBody.Part image = null;
-                if (selectedImage != null) {
-                    try {
-                        InputStream is = getContentResolver().openInputStream(selectedImage);
-                        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), getBytes(is));
-                        image = MultipartBody.Part.createFormData("image", "image", requestFile);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                if (mediaPath != null) {
+                    File file = new File(mediaPath);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+                    image = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
                 }
+                RequestBody login = RequestBody.create(MediaType.parse("text/plain"), market.getLogin());
+                RequestBody password = RequestBody.create(MediaType.parse("text/plain"), market.getPassword());
+                RequestBody name = RequestBody.create(MediaType.parse("text/plain"), market.getName());
+                RequestBody address = RequestBody.create(MediaType.parse("text/plain"), market.getAddress());
+                RequestBody phone = RequestBody.create(MediaType.parse("text/plain"), market.getPhone());
 
-                final Call<Result> resultCall = api.createMarket(market.getLogin(), market.getPassword(), market.getName(), market.getAddress(), market.getPhone(), market.getLatitude(), market.getLongitude(), image);
+                final Call<Result> resultCall = api.createMarket(login, password, name, address, phone, market.getLatitude(), market.getLongitude(), image);
                 resultCall.enqueue(new Callback<Result>() {
                     @SuppressWarnings("ConstantConditions")
                     @Override
                     public void onResponse(@NonNull Call<Result> call, @NonNull Response<Result> response) {
-                        Log.e("TAG", response.message());
                         if (response.body().getStatus() == 1) {
                             Tools.market = response.body().getMarket();
                             new DownloadData().execute(getBaseContext());
                         } else {
-//                            Log.e("TAG", "Failed");
                             findViewById(R.id.progressbar).setVisibility(View.GONE);
                             findViewById(R.id.go_button).setVisibility(View.VISIBLE);
                         }
@@ -186,20 +184,6 @@ public class RegisterActivity extends FragmentActivity implements OnMapReadyCall
                 Toast.makeText(context, R.string.connection_error, Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    public byte[] getBytes(InputStream is) throws IOException {
-        ByteArrayOutputStream byteBuff = new ByteArrayOutputStream();
-
-        int buffSize = 1024;
-        byte[] buff = new byte[buffSize];
-
-        int len;
-        while ((len = is.read(buff)) != -1) {
-            byteBuff.write(buff, 0, len);
-        }
-
-        return byteBuff.toByteArray();
     }
 
     public boolean isConnected() {
@@ -256,10 +240,18 @@ public class RegisterActivity extends FragmentActivity implements OnMapReadyCall
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
             findViewById(R.id.image_check).setVisibility(View.VISIBLE);
-            selectedImage = data.getData();
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            assert selectedImage != null;
+            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            assert cursor != null;
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            mediaPath = cursor.getString(columnIndex);
+            cursor.close();
         } else {
             findViewById(R.id.image_check).setVisibility(View.INVISIBLE);
-            selectedImage = null;
+            mediaPath = null;
         }
     }
 

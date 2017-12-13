@@ -27,12 +27,14 @@ public interface WebAPI {
 
     @Multipart
     @POST("/api/market/create")
-    Call<Result> createMarket(@Part("login") String login,
-                              @Part("password") String password,
-                              @Part("name") String name,
-                              @Part("address") String address,
-                              @Part("phone") String phone,
-                              @Part("latitude") Double latitude,
-                              @Part("longitude") Double longitude,
-                              @Nullable @Part MultipartBody.Part image);
+    Call<Result> createMarket(
+            @Part("login") RequestBody login,
+            @Part("password") RequestBody  password,
+            @Part("name") RequestBody name,
+            @Part("address") RequestBody address,
+            @Part("phone") RequestBody phone,
+            @Part("latitude") Double latitude,
+            @Part("longitude") Double longitude,
+            @Nullable @Part MultipartBody.Part image
+    );
 }
