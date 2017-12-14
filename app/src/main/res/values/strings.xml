@@ -31,4 +31,8 @@
     <string name="address_hint">адрес</string>
     <string name="sign_up">Зарегистрироваться</string>
     <string name="ready">Готово</string>
+    <string name="title_activity_market">MarketActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

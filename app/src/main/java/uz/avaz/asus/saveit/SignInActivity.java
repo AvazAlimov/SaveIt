@@ -1,5 +1,6 @@
 package uz.avaz.asus.saveit;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -32,6 +32,7 @@ import uz.avaz.asus.saveit.Services.WebAPI;
 
 public class SignInActivity extends AppCompatActivity {
     AnimationDrawable animation;
+    @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
@@ -124,7 +125,7 @@ public class SignInActivity extends AppCompatActivity {
                 Tools.markets_array = marketResultCall.execute().body().getData();
                 Tools.categories_array = categoryResultCall.execute().body().getData();
                 Tools.products_array = productResultCall.execute().body().getData();
-                Intent intent = new Intent(context[0], MainActivity.class);
+                Intent intent = new Intent(context[0], MarketActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context[0].startActivity(intent);
             } catch (IOException e) {

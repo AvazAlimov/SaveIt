@@ -138,8 +138,7 @@ public class RegisterActivity extends FragmentActivity implements OnMapReadyCall
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 final WebAPI api = retrofit.create(WebAPI.class);
-
-                Market market = new Market();
+                final Market market = new Market();
                 market.setLogin(((EditText) findViewById(R.id.login)).getText().toString());
                 market.setPassword(((EditText) findViewById(R.id.password)).getText().toString());
                 market.setName(((EditText) findViewById(R.id.name)).getText().toString());
@@ -147,6 +146,7 @@ public class RegisterActivity extends FragmentActivity implements OnMapReadyCall
                 market.setAddress(((TextView) findViewById(R.id.address)).getText().toString());
                 market.setLatitude(latitude);
                 market.setLongitude(longitude);
+
                 MultipartBody.Part image = null;
                 if (mediaPath != null) {
                     File file = new File(mediaPath);
@@ -165,7 +165,7 @@ public class RegisterActivity extends FragmentActivity implements OnMapReadyCall
                     @Override
                     public void onResponse(@NonNull Call<Result> call, @NonNull Response<Result> response) {
                         if (response.body().getStatus() == 1) {
-                            Tools.market = response.body().getMarket();
+                            Tools.market = market;
                             new DownloadData().execute(getBaseContext());
                         } else {
                             findViewById(R.id.progressbar).setVisibility(View.GONE);
@@ -270,11 +270,13 @@ public class RegisterActivity extends FragmentActivity implements OnMapReadyCall
             final Call<MarketResult> marketResultCall = api.getMarkets();
             final Call<CategoryResult> categoryResultCall = api.getCategories();
             final Call<ProductResult> productResultCall = api.getProducts();
+            final Call<Result> resultCall = api.getStatus(Tools.market);
             try {
                 Tools.markets_array = marketResultCall.execute().body().getData();
                 Tools.categories_array = categoryResultCall.execute().body().getData();
                 Tools.products_array = productResultCall.execute().body().getData();
-                Intent intent = new Intent(context[0], MainActivity.class);
+                Tools.market = resultCall.execute().body().getMarket();
+                Intent intent = new Intent(context[0], MarketActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context[0].startActivity(intent);
             } catch (IOException e) {
