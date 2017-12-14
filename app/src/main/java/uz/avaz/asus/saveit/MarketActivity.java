@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -114,6 +115,7 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
             size = getResources().getDimensionPixelSize(R.dimen.size_8dp);
             LinearLayout item = new LinearLayout(this);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            lp.gravity = Gravity.CENTER;
             lp.setMargins(0, size, 0, 0);
             item.setLayoutParams(lp);
             item.setTag(market.getId());

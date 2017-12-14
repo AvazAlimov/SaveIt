@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             LinearLayout item = new LinearLayout(this);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             lp.setMargins(0, size, 0, 0);
+            lp.gravity = Gravity.CENTER;
             item.setLayoutParams(lp);
             item.setTag(market.getId());
             item.setBackgroundResource(R.drawable.item);
