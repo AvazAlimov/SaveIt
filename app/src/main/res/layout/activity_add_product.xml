@@ -24,4 +24,109 @@
 
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/size_16dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="#88888888"
+                android:hint="@string/product_name_hint"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="#88888888"
+                android:hint="@string/date_hint"
+                android:inputType="date"
+                android:padding="12dp"
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="#88888888"
+                android:hint="@string/unit_hint"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="#88888888"
+                android:hint="@string/price_hint"
+                android:inputType="numberDecimal"
+                android:padding="12dp"
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/discount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="#88888888"
+                android:hint="@string/discount_hint"
+                android:inputType="numberDecimal"
+                android:padding="12dp"
+                android:textColor="@android:color/white" />
+
+            <Spinner
+                android:id="@+id/category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="#88888888"
+                android:padding="12dp"
+                android:textColor="@android:color/white" />
+
+
+            <RelativeLayout
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/button_darker"
+                    android:contentDescription="@string/app_name"
+                    android:padding="8dp"
+                    android:onClick="showGallery"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_camera" />
+
+                <View
+                    android:visibility="invisible"
+                    android:id="@+id/image_check"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/ic_check"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

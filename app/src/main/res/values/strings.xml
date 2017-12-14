@@ -41,4 +41,9 @@
     <string name="edit">Редактировать</string>
     <string name="user_mode">Режим пользователя</string>
     <string name="add_product">Добавить продукт</string>
+    <string name="product_name_hint">Наименование товара</string>
+    <string name="date_hint">Срок годности</string>
+    <string name="unit_hint">Единица измерения</string>
+    <string name="price_hint">Начальная цена (сум)</string>
+    <string name="discount_hint">Скидка %</string>
 </resources>

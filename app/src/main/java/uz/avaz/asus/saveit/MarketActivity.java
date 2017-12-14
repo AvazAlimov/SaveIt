@@ -105,10 +105,12 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
             });
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_logout) {
-
+            Tools.market = null;
+            Intent intent = new Intent(this, StartActivity.class);
+            startActivity(intent);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -202,20 +204,15 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
             item.setBackgroundResource(R.drawable.item);
             item.setClickable(true);
             item.setOrientation(LinearLayout.HORIZONTAL);
-//            item.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    openMarket(v);
-//                }
-//            });
             size = getResources().getDimensionPixelSize(R.dimen.size_72dp);
             ImageView image = new ImageView(this);
             image.setImageResource(R.drawable.ic_groceries);
             image.setLayoutParams(new ViewGroup.LayoutParams(size, ViewGroup.LayoutParams.MATCH_PARENT));
             image.setScaleType(ImageView.ScaleType.FIT_CENTER);
             image.setBackgroundResource(android.R.color.transparent);
-            if (!product.getImage().isEmpty())
-                new Tools.DownloadImageTask(image, product.getImage()).execute(Tools.IMAGE_ADDRESS + product.getImage());
+            if (product.getImage() != null)
+                if (!product.getImage().isEmpty())
+                    new Tools.DownloadImageTask(image, product.getImage()).execute(Tools.IMAGE_ADDRESS + product.getImage());
             size = getResources().getDimensionPixelSize(R.dimen.size_16dp);
 
             LinearLayout layout = new LinearLayout(this);
