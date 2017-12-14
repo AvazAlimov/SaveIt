@@ -138,7 +138,7 @@ class Tools {
             if (bmImage != null) {
                 bmImage.setBackgroundDrawable(background);
             } else if (imageView != null) {
-                imageView.setImageBitmap(Bitmap.createBitmap(result));
+                imageView.setImageBitmap(Bitmap.createScaledBitmap(result, imageView.getLayoutParams().width, imageView.getLayoutParams().height, false));
             }
         }
     }
