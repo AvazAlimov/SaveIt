@@ -1,8 +1,12 @@
 package uz.avaz.asus.saveit;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.LinearLayout;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -82,6 +86,24 @@ class Tools {
             } catch (IOException e) {
                 android.util.Log.e(TAG, "Could not close stream", e);
             }
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        LinearLayout bmImage;
+
+        DownloadImageTask(LinearLayout bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            return loadBitmap(IMAGE_ADDRESS + market.getImage());
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            BitmapDrawable background = new BitmapDrawable(result);
+            bmImage.setBackgroundDrawable(background);
         }
     }
 }

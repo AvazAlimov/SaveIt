@@ -1,7 +1,7 @@
 package uz.avaz.asus.saveit;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,14 +12,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.io.InputStream;
 
 public class MarketActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -57,7 +53,7 @@ public class MarketActivity extends AppCompatActivity
         ((TextView) findViewById(R.id.market_name)).setText(Tools.market.getName());
         ((TextView) findViewById(R.id.market_address)).setText(Tools.market.getAddress());
         if (!Tools.market.getImage().isEmpty()) {
-            new DownloadImageTask((LinearLayout) findViewById(R.id.background_image)).execute(Tools.IMAGE_ADDRESS + Tools.market.getImage());
+            new Tools.DownloadImageTask((LinearLayout) findViewById(R.id.background_image)).execute(Tools.IMAGE_ADDRESS + Tools.market.getImage());
         }
         return true;
     }
@@ -80,42 +76,30 @@ public class MarketActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_products) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_trash) {
+
+        } else if (id == R.id.nav_user) {
 
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_logout) {
 
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        LinearLayout bmImage;
-
-        DownloadImageTask(LinearLayout bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            return Tools.loadBitmap(Tools.IMAGE_ADDRESS + Tools.market.getImage());
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            BitmapDrawable background = new BitmapDrawable(result);
-            bmImage.setBackgroundDrawable(background);
-        }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return false;
     }
+
+
 }
