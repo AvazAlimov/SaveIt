@@ -8,6 +8,7 @@
     <Button
         android:layout_margin="@dimen/size_8dp"
         android:text="@string/add_product"
+        android:onClick="goToAddProductWindow"
         android:background="@drawable/button_darker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

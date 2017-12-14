@@ -47,7 +47,8 @@
         <activity
             android:name=".MarketActivity"
             android:label="@string/title_activity_market"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".AddProductActivity"></activity>
     </application>
 
 </manifest>

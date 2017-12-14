@@ -88,11 +88,21 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
         int id = item.getItemId();
 
         if (id == R.id.nav_products) {
-            loadProducts();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    loadProducts();
+                }
+            });
         } else if (id == R.id.nav_trash) {
 
         } else if (id == R.id.nav_user) {
-            loadMarkets();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    loadMarkets();
+                }
+            });
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -249,6 +259,11 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
     private void openMarket(View v) {
         Intent intent = new Intent(this, MapsActivity.class);
         intent.putExtra("market", (int) v.getTag());
+        startActivity(intent);
+    }
+
+    public void goToAddProductWindow(View view) {
+        Intent intent = new Intent(this, AddProductActivity.class);
         startActivity(intent);
     }
 }
