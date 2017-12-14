@@ -67,7 +67,6 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
         ((TextView) findViewById(R.id.market_address)).setText(Tools.market.getAddress());
         if (!Tools.market.getImage().isEmpty())
             new Tools.DownloadImageTask((LinearLayout) findViewById(R.id.background_image), Tools.market.getImage()).execute(Tools.IMAGE_ADDRESS + Tools.market.getImage());
-
         loadProducts();
         return true;
     }
@@ -120,6 +119,7 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
         } else if (id == R.id.nav_logout) {
             Tools.market = null;
             Intent intent = new Intent(this, StartActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
