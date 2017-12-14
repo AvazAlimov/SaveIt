@@ -32,6 +32,7 @@ import uz.avaz.asus.saveit.Services.WebAPI;
 
 public class SignInActivity extends AppCompatActivity {
     AnimationDrawable animation;
+
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

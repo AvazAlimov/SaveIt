@@ -32,6 +32,7 @@ public class Market {
     @Expose
     private Double longitude;
     @SerializedName("image")
+    @Expose
     private String image;
 
     public void setAddress(String address) {
