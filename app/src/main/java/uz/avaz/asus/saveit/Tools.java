@@ -63,6 +63,14 @@ class Tools {
         return "";
     }
 
+    static int productCount(Market market) {
+        int count = 0;
+        for (Product product : products_array)
+            if(product.getMarket().intValue() == market.getId().intValue())
+                count++;
+        return count;
+    }
+
     static Bitmap loadBitmap(String url) {
         Bitmap bitmap = null;
         InputStream in = null;
