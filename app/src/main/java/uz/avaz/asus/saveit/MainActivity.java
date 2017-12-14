@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             ImageView image = new ImageButton(this);
             image.setImageResource(R.drawable.ic_store);
             image.setLayoutParams(new ViewGroup.LayoutParams(size, size));
-            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
             image.setBackgroundResource(android.R.color.transparent);
 
             size = getResources().getDimensionPixelSize(R.dimen.size_16dp);

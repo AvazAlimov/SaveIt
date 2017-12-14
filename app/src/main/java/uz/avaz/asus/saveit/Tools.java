@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.io.BufferedInputStream;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 import uz.avaz.asus.saveit.Classes.Category;
@@ -33,6 +36,7 @@ class Tools {
     static List<Market> markets_array;
     static List<Category> categories_array;
     static List<Product> products_array;
+    static HashMap<String, Bitmap> images = new HashMap<>();
 
     static Market market;
 
@@ -92,18 +96,34 @@ class Tools {
     @SuppressLint("StaticFieldLeak")
     static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         LinearLayout bmImage;
+        ImageView imageView;
+        String name;
 
-        DownloadImageTask(LinearLayout bmImage) {
+        DownloadImageTask(LinearLayout bmImage, String name) {
             this.bmImage = bmImage;
+            this.name = name;
+        }
+
+        DownloadImageTask(ImageView imageView, String name) {
+            this.imageView = imageView;
+            this.name = name;
         }
 
         protected Bitmap doInBackground(String... urls) {
+            if (images.containsKey(name))
+                return images.get(name);
             return loadBitmap(IMAGE_ADDRESS + market.getImage());
         }
 
         protected void onPostExecute(Bitmap result) {
+            if (!images.containsKey(name))
+                images.put(name, result);
             BitmapDrawable background = new BitmapDrawable(result);
-            bmImage.setBackgroundDrawable(background);
+            if (bmImage != null) {
+                bmImage.setBackgroundDrawable(background);
+            } else if (imageView != null) {
+                imageView.setImageBitmap(Bitmap.createScaledBitmap(result, imageView.getWidth(), imageView.getHeight(), true));
+            }
         }
     }
 }
