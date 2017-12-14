@@ -11,13 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/teal"
-        android:gravity="center_vertical"
-        android:padding="16dp">
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/title_image"
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:layout_marginLeft="@dimen/size_16dp"
+            android:layout_marginRight="@dimen/size_16dp"
             android:contentDescription="@string/markets"
             android:src="@drawable/ic_market" />
 
@@ -25,8 +26,6 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             android:text="@string/markets"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
@@ -38,14 +37,14 @@
 
         <ImageButton
             android:id="@+id/switch_button"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@android:color/transparent"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/button"
             android:contentDescription="@string/markets"
             android:onClick="switchScrolls"
-            android:padding="0dp"
+            android:padding="@dimen/size_16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_box" />
+            android:src="@drawable/ic_switch" />
     </LinearLayout>
 
     <ScrollView

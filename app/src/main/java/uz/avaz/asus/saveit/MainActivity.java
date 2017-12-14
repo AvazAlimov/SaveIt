@@ -187,13 +187,11 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.product_scroll).setVisibility(View.VISIBLE);
             ((TextView) findViewById(R.id.title)).setText(R.string.products);
             ((ImageView) findViewById(R.id.title_image)).setImageResource(R.drawable.ic_box);
-            ((ImageView) findViewById(R.id.switch_button)).setImageResource(R.drawable.ic_market);
         } else {
             findViewById(R.id.market_scroll).setVisibility(View.VISIBLE);
             findViewById(R.id.product_scroll).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.title)).setText(R.string.markets);
             ((ImageView) findViewById(R.id.title_image)).setImageResource(R.drawable.ic_market);
-            ((ImageView) findViewById(R.id.switch_button)).setImageResource(R.drawable.ic_box);
         }
     }
 }
