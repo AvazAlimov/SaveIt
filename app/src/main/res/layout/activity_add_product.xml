@@ -16,7 +16,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@drawable/button"
             android:contentDescription="@string/app_name"
             android:onClick="goBack"
             android:padding="@dimen/size_16dp"
