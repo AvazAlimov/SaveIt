@@ -92,14 +92,16 @@ public class StartActivity extends AppCompatActivity {
                 Tools.categories_array = categoryResultCall.execute().body().getData();
                 Tools.products_array = productResultCall.execute().body().getData();
             } catch (IOException e) {
-                e.printStackTrace();
+                return null;
             }
             return views;
         }
 
         protected void onPostExecute(View... views) {
-            views[0].setVisibility(View.INVISIBLE);
-            views[1].setVisibility(View.VISIBLE);
+            if (views != null) {
+                views[0].setVisibility(View.INVISIBLE);
+                views[1].setVisibility(View.VISIBLE);
+            }
         }
     }
 }
