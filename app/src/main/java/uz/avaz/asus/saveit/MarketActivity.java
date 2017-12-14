@@ -65,8 +65,9 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
         getMenuInflater().inflate(R.menu.market, menu);
         ((TextView) findViewById(R.id.market_name)).setText(Tools.market.getName());
         ((TextView) findViewById(R.id.market_address)).setText(Tools.market.getAddress());
-        if (!Tools.market.getImage().isEmpty())
-            new Tools.DownloadImageTask((LinearLayout) findViewById(R.id.background_image), Tools.market.getImage()).execute(Tools.IMAGE_ADDRESS + Tools.market.getImage());
+        if (Tools.market.getImage() != null)
+            if (!Tools.market.getImage().isEmpty())
+                new Tools.DownloadImageTask((LinearLayout) findViewById(R.id.background_image), Tools.market.getImage()).execute(Tools.IMAGE_ADDRESS + Tools.market.getImage());
         loadProducts();
         return true;
     }
@@ -161,8 +162,9 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
             image.setLayoutParams(new ViewGroup.LayoutParams(size, size));
             image.setScaleType(ImageView.ScaleType.FIT_CENTER);
             image.setBackgroundResource(android.R.color.transparent);
-            if (!market.getImage().isEmpty())
-                new Tools.DownloadImageTask(image, market.getImage()).execute(Tools.IMAGE_ADDRESS + market.getImage());
+            if (market.getImage() != null)
+                if (!market.getImage().isEmpty())
+                    new Tools.DownloadImageTask(image, market.getImage()).execute(Tools.IMAGE_ADDRESS + market.getImage());
             size = getResources().getDimensionPixelSize(R.dimen.size_16dp);
 
             LinearLayout layout = new LinearLayout(this);
