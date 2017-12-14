@@ -161,7 +161,7 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
             });
             size = getResources().getDimensionPixelSize(R.dimen.size_72dp);
             ImageView image = new ImageView(this);
-            image.setImageResource(R.drawable.ic_store);
+            image.setImageResource(R.drawable.ic_online_store);
             image.setLayoutParams(new ViewGroup.LayoutParams(size, size));
             image.setScaleType(ImageView.ScaleType.FIT_CENTER);
             image.setBackgroundResource(android.R.color.transparent);
