@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -37,6 +38,8 @@ public class StartActivity extends AppCompatActivity {
 
         if (isConnected())
             new DownloadData().execute(findViewById(R.id.progressbar), findViewById(R.id.go_button));
+        else
+            Toast.makeText(this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
     }
 
     @Override
