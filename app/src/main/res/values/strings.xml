@@ -40,4 +40,5 @@
     <string name="system">Система</string>
     <string name="edit">Редактировать</string>
     <string name="user_mode">Режим пользователя</string>
+    <string name="add_product">Добавить продукт</string>
 </resources>

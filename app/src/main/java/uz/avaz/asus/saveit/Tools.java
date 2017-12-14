@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,6 +46,22 @@ class Tools {
             if (market.getId() == id)
                 return market;
         return null;
+    }
+
+    static List<Product> findProducts() {
+        List<Product> products = new ArrayList<>();
+        for (Product product : products_array) {
+            if (product.getMarket().intValue() == market.getId().intValue())
+                products.add(product);
+        }
+        return products;
+    }
+
+    static String findCategoryName(int id) {
+        for (int i = 0; i < Tools.categories_array.size(); i++)
+            if (Tools.categories_array.get(i).getId() == id)
+                return Tools.categories_array.get(i).getName();
+        return "";
     }
 
     static Bitmap loadBitmap(String url) {
@@ -112,7 +129,7 @@ class Tools {
         protected Bitmap doInBackground(String... urls) {
             if (images.containsKey(name))
                 return images.get(name);
-            return loadBitmap(IMAGE_ADDRESS + market.getImage());
+            return loadBitmap(IMAGE_ADDRESS + name);
         }
 
         protected void onPostExecute(Bitmap result) {
@@ -122,7 +139,7 @@ class Tools {
             if (bmImage != null) {
                 bmImage.setBackgroundDrawable(background);
             } else if (imageView != null) {
-                imageView.setImageBitmap(Bitmap.createScaledBitmap(result, imageView.getWidth(), imageView.getHeight(), true));
+                imageView.setImageBitmap(Bitmap.createScaledBitmap(result, imageView.getLayoutParams().width, imageView.getLayoutParams().width, true));
             }
         }
     }

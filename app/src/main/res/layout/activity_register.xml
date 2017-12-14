@@ -7,23 +7,6 @@
     android:background="@drawable/animation_list"
     tools:context="uz.avaz.asus.saveit.RegisterActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:gravity="center_vertical">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/app_name"
-            android:onClick="goBack"
-            android:padding="@dimen/size_16dp"
-            android:src="@drawable/ic_back" />
-
-    </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -160,6 +143,23 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:onClick="goBack"
+            android:padding="@dimen/size_16dp"
+            android:src="@drawable/ic_back" />
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/map_layout"
