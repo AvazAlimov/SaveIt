@@ -75,16 +75,11 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -210,6 +205,13 @@ public class MarketActivity extends AppCompatActivity implements NavigationView.
                     item.setBackgroundResource(R.drawable.item);
                     item.setClickable(true);
                     item.setOrientation(LinearLayout.HORIZONTAL);
+                    item.setTag(product.getMarket());
+                    item.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            openMarket(view);
+                        }
+                    });
                     size = getResources().getDimensionPixelSize(R.dimen.size_72dp);
                     ImageView image = new ImageView(this);
                     image.setImageResource(R.drawable.ic_groceries);

@@ -32,12 +32,25 @@ public interface WebAPI {
     @POST("/api/market/create")
     Call<Result> createMarket(
             @Part("login") RequestBody login,
-            @Part("password") RequestBody  password,
+            @Part("password") RequestBody password,
             @Part("name") RequestBody name,
             @Part("address") RequestBody address,
             @Part("phone") RequestBody phone,
             @Part("latitude") Double latitude,
             @Part("longitude") Double longitude,
+            @Nullable @Part MultipartBody.Part image
+    );
+
+    @Multipart
+    @POST("/api/product/create")
+    Call<ResultProduct> createProduct(
+            @Part("name") RequestBody name,
+            @Part("date") RequestBody date,
+            @Part("unit") RequestBody unit,
+            @Part("price") Double price,
+            @Part("discount") Double discount,
+            @Part("category") Integer category,
+            @Part("market") Integer market,
             @Nullable @Part MultipartBody.Part image
     );
 }
