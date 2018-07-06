@@ -1,3 +1,2 @@
 # SaveIt
-Hackathon project - Open Data Challenge 2017 Hackathon!!!
-!!!WINNER!!!
+Hackathon project **WINNER** - Open Data Challenge 2017 Hackathon!!!
